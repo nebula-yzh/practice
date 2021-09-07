@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ISAC/ISAC.iml" filepath="$PROJECT_DIR$/ISAC/ISAC.iml" />
       <module fileurl="file://$PROJECT_DIR$/java_basic/java_basic.iml" filepath="$PROJECT_DIR$/java_basic/java_basic.iml" />
       <module fileurl="file://$PROJECT_DIR$/java_front/java_front.iml" filepath="$PROJECT_DIR$/java_front/java_front.iml" />
       <module fileurl="file://$PROJECT_DIR$/java_interview/java_interview.iml" filepath="$PROJECT_DIR$/java_interview/java_interview.iml" />
