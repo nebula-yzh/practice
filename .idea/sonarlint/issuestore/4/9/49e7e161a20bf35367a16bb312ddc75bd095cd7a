@@ -1,18 +1,0 @@
-
-T
-java:S1854	"9Remove this useless assignment to local variable "node5".(Ô¦¾…ýÿÿÿÿ
-O
-java:S1854"9Remove this useless assignment to local variable "node4".(ý›ûÉ
-O
-java:S1854"9Remove this useless assignment to local variable "node3".(Äøþï
-@
-java:S1481"*Remove this unused "node3" local variable.(Äøþï
-@
-java:S1481"*Remove this unused "node4" local variable.(ý›ûÉ
-E
-java:S1481	"*Remove this unused "node5" local variable.(Ô¦¾…ýÿÿÿÿ
-Q	java:S125"<This block of commented-out lines of code should be removed.(Ë¢ží
-S	java:S106"9Replace this use of System.out or System.err by a logger.(á¯ÑŽþÿÿÿÿ
-9
-java:S1659"#Declare "rFlag" on a separate line.(öÀßà
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¹Âì¦
