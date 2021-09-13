@@ -9,3 +9,7 @@ Q
 !src/jianzhi_offer/Solution28.java,6\b\6b6a2865c3b3e19b99b4737b9cb2d61d2e9e7fd7
 =
 ISAC/ISAC.iml,0\9\090276b1c46cffa946a1bc79be7f8c81c77c3eab
+S
+#src/jianzhi_offer/Solution55_1.java,5\c\5c352e02439f74bef3cd34ef2206fd80766a3edb
+Q
+!src/jianzhi_offer/Solution06.java,a\1\a152173a8df9275b48c58c78f8b09a81bf4e8d37
