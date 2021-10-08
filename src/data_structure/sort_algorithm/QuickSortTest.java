@@ -6,19 +6,20 @@ package data_structure.sort_algorithm;
  * 算法思想：在待排序L[1...n]中任取一个元素pivot作为枢轴（基准，通常取首元素），通过一趟排序将待排序表划分独立的两部分L1[1...k-1]和L2[k...n]，
  * 使得两部分左边小于pivot，右边大于pivot，pivot在L[k]的位置上，这称为一次划分。然后分别递归的对两个子表重复上述过程，直到每部分只有一个元素或为空为止，
  * 所有元素都正确排序。
+ * @author Nebula
  */
-public class QuickSort {
+public class QuickSortTest {
     public static void main(String[] args) {
-        QuickSort quickSort = new QuickSort();
-        int[] L = new int[]{21, 6, 5, 9, 3, 1, 9, 23, 152, 5, 3, 6, 1};
-        quickSort.quickS(L, 0, L.length - 1);
-        for (int i : L) {
+        QuickSortTest quickSortTest = new QuickSortTest();
+        int[] l = new int[]{21, 6, 5, 9, 3, 1, 9, 23, 152, 5, 3, 6, 1};
+        quickSortTest.quickSort(l, 0, l.length - 1);
+        for (int i : l) {
             System.out.println(i);
         }
     }
 
 
-    public void quickS(int[] L, int low, int high) {
+    public void quickSort(int[] L, int low, int high) {
         //递归退出条件
         if (low >= high) {
             return;
@@ -48,9 +49,9 @@ public class QuickSort {
         L[low] = pivot;
 
         //左边
-        quickS(L, tempLow, low - 1);
+        quickSort(L, tempLow, low - 1);
         //右边
-        quickS(L, low + 1, tempHigh);
+        quickSort(L, low + 1, tempHigh);
 
     }
 }
