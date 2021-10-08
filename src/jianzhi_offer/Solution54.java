@@ -38,12 +38,12 @@ public class Solution54 {
     /*
         不要使用static 可以直接使用普通类变量来维护两个值
      */
-    int kthLargest(TreeNode2 root, int k) {
+    int kthLargest(TreeNode root, int k) {
         InOrder(root,k);
         return finalVal;
     }
 
-    void InOrder(TreeNode2 root, int k) {
+    void InOrder(TreeNode root, int k) {
         if (root == null) {
             return ;
         }
@@ -56,14 +56,3 @@ public class Solution54 {
 
 }
 
-//定义二叉树结点
-class TreeNode2 {
-    int val;
-    TreeNode2 left;
-    TreeNode2 right;
-
-    public TreeNode2(int val) {
-        this.val = val;
-    }
-
-}

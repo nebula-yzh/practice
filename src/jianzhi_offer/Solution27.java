@@ -30,7 +30,7 @@ public class Solution27 {
      * @param root
      * @return
      */
-     TreeNode1 mirrorTree(TreeNode1 root) {
+     TreeNode mirrorTree(TreeNode root) {
          if(root==null){
              return null;
          }
@@ -38,7 +38,7 @@ public class Solution27 {
          mirrorTree(root.right);
          //交换左右结点
          if(root.left!=null||root.right!=null){
-             TreeNode1 tempNode;
+             TreeNode tempNode;
              tempNode = root.left;
              root.left = root.right;
              root.right = tempNode;
@@ -48,14 +48,3 @@ public class Solution27 {
 
 }
 
-//定义二叉树结点
-class TreeNode1 {
-    int val;
-    TreeNode1 left;
-    TreeNode1 right;
-
-    public TreeNode1(int val) {
-        this.val = val;
-    }
-
-}
