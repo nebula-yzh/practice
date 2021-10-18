@@ -25,9 +25,9 @@ package codetop;
  * <p>
  * 进阶：你是否可以在O(1) 时间复杂度内完成这两种操作？
  */
-public class LruCacheS146 {
+public class LRUCacheS146 {
     public static void main(String[] args) {
-        LruCacheS146 lruCache = new LruCacheS146(10);
+        LRUCacheS146 lruCache = new LRUCacheS146(10);
 
         lruCache.put(1, 1);
         System.out.println(lruCache.get(2));
@@ -59,7 +59,7 @@ public class LruCacheS146 {
      * 超时
      * @param capacity
      */
-    public LruCacheS146(int capacity) {
+    public LRUCacheS146(int capacity) {
         //初始化lru链表
         this.capacity = capacity;
         //指向空头结点，用作辅助结点

@@ -7,9 +7,9 @@ import java.util.HashMap;
  * @date 2021/10/9 16:35
  * @description: 使用循环链表+map实现 LRU缓存机制
  */
-public class LruCache {
+public class LRUCache {
     public static void main(String[] args) {
-        LruCache lruCache = new LruCache(2);
+        LRUCache lruCache = new LRUCache(2);
 
         lruCache.put(1, 1);
         lruCache.put(2, 2);
@@ -30,7 +30,7 @@ public class LruCache {
     int capacity;
     int size;
 
-    public LruCache(int capacity) {
+    public LRUCache(int capacity) {
         //初始化lru链表
         this.capacity = capacity;
         //指向空头结点,尾结点，用作辅助结点
