@@ -7,7 +7,7 @@ package codetop;
  * 给定两个字符串形式的非负整数num1 和num2，计算它们的和并同样以字符串形式返回。
  * 你不能使用任何內建的用于处理大整数的库（比如 BigInteger），也不能直接将输入的字符串转换为整数形式。
  * <p>
- * 跟AddTwoNumbersS02 两数相加有些类似，两数相加是链表操作，该题是字符串
+ * 跟AddTwoNumbersS02 两数相加有些类似，两数相加是链表操作，该题是字符串，但基本操作相同，进位啥的
  * <p>
  * 示例 1：
  * 输入：num1 = "11", num2 = "123"
@@ -37,6 +37,8 @@ public class AddStringsS415 {
         StringBuilder res = new StringBuilder();
         for (int i = n1.length - 1, j = n2.length - 1; i >= 0 || j >= 0 || carry > 0; i--, j--) {
             //从个位开始处理字符的数，当某个数结束了，就补0
+            //nn1 = i >= 0 ? n1[i] - '0' : 0;
+            //nn2 = j >= 0 ? n2[j] - '0' : 0;
             if (i >= 0) {
                 nn1 = n1[i] - '0';
             } else {
