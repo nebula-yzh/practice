@@ -2,6 +2,10 @@ package jianzhi_offer;
 
 import java.util.Collections;
 
+/**
+ *  剑指 Offer 33. 二叉搜索树的后序遍历序列 中等
+ *  输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。
+ */
 public class Solution33 {
     public static void main(String[] args) {
         //[5, 2, -17, -11, 25, 76, 62, 98, 92, 61]
