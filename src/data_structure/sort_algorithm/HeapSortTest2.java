@@ -2,40 +2,26 @@ package data_structure.sort_algorithm;
 
 /**
  * @author Nebula
- * @date 2021/11/7 08:21
- * @description: 堆排序
- * 堆分为大根堆和小根堆，是一个完全二叉树，根 > 左、右
- * 大根堆，堆顶元素最大，根节点最大，满足沿着某一条分支都小于其父节点
- * 小根堆，堆顶元素最小，根节点最小，满足沿着某一条分支都大于其父节点
- * 与平衡二叉树有所不同
- * <p>
- * i>=1 ，一般若用数组存储，0位置空出来，i表示第i个结点
- * i的左孩子 2i
- * i的右孩子 2i+1
- * i的父节点 [i/2] 向下取整
- * 非终端结点: i<=[n/2]
- * 算法思想：
- * 一、建立大根堆
- * 1.从下往上，将所有非终端结点都检查一遍，是否满足大根堆要求(根>左、右)；
- * 2.若不满足则进行调整(将当前结点与更大的一个孩子交换)，
- * 将小元素下坠，若元素互换破坏了下一级的堆，采用相同方式调整，直到坠到最低。
- * 4.循环1,2完成建堆
- * 3.进行堆排序：
- * 5.再将待排序序列再次调整为大根堆(小元素不断下坠)
- * 完成一个升序排序序列
+ * @date 2021/11/7 11:02
+ * @description: TODO
  */
-public class HeapSortTest {
+public class HeapSortTest2 {
     public static void main(String[] args) {
-        HeapSortTest heapSort = new HeapSortTest();
-        int[] arr = new int[]{0, 9, 22, 6, 3, 8, 1, 125, 546, 874, 1215, 124, 0, 23, 6};
-        int len = arr.length - 1;
-        //heapSort.buildMaxHeap(arr,len);
-        //heapSort.headSortRecursive(arr,len);
-        heapSort.headSort(arr, len);
-        for (int i : arr) {
-            System.out.println(i);
-
+        HeapSortTest2 heapSort = new HeapSortTest2();
+        int[] arr = new int[]{111111, 9, 22, 6, 3, 8, 1, 125, 546, 874, 1215, 124, 0, 23, 6};
+        int[] arr1 = new int[arr.length+1];
+        System.arraycopy(arr,0,arr1,1,arr.length);
+        for (int i: arr1) {
+            System.out.print(i);
+            System.out.print(" ");
         }
+        System.out.println();
+        heapSort.headSort(arr1,arr1.length-1);
+        for (int i: arr1) {
+            System.out.print(i);
+            System.out.print(" ");
+        }
+
     }
 
     /**
@@ -57,24 +43,6 @@ public class HeapSortTest {
         arr[0] = arr[1];
         arr[1] = arr[len];
         arr[len] = arr[0];
-    }
-
-    /**
-     * 堆排序，递归，需要先建大根堆
-     *
-     * @param arr
-     * @param len
-     */
-    public void headSortRecursive(int[] arr, int len) {
-        if (len < 0) {
-            return;
-        }
-        //进行堆排，每一趟将堆顶元素加入有序子序列(与待排序列的最后一个元素(最小的)交换)，
-        arr[0] = arr[1];
-        arr[1] = arr[len];
-        arr[len] = arr[0];
-        HeadAdjust(arr, 1, --len);
-        headSortRecursive(arr, len);
     }
 
     /**
