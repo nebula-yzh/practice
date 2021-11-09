@@ -29,12 +29,16 @@ public class SearchInRotatedSortedArrayS33 {
      * 二分搜索的变体,难度大，反复练习思路
      * 细节多，边界条件复杂
      * 现在数组前面⼀段是数值⽐较⼤的数，后面⼀段是数值偏小的数。
-     * 1.如果 mid 落在了前⼀段数值⽐较⼤的区间内了，那么⼀定有 nums[mid] >= nums[0] ，
-     * 2.如果是落在后面⼀段数值⽐较⼩的区间内，nums[mid] < nums[0] 。
-     * 3.如果 mid 落在了后⼀段数值⽐较⼩的区间内了，那么⼀定有nums[mid] < nums[high]，
-     * 4.如果是落在前⾯⼀段数值⽐较⼤的区间内， 有nums[mid] ≤ nums[high]，也有≥。
-     * 5.还有 nums[low] == nums[mid] 和 nums[high] == nums[mid] 的情况，单独处理即可。
-     * 最后找到则输出 mid，没有找到则输出 -1 。
+     *
+     * 这启示我们可以在常规二分查找的时候查看当前 mid 为分割位置分割出来的两个部分 [low, mid] 和 [mid + 1, high] 哪个部分是有序的，
+     * 并根据有序的那个部分确定我们该如何改变二分查找的上下界，因为我们能够根据有序的那部分判断出 target 在不在这个部分：
+     *
+     * 如果 [low, mid - 1] 是有序数组，且 target 的大小满足 [nums[low],nums[mid])，
+     * 则我们应该将搜索范围缩小至 [low, mid - 1]，否则在 [mid + 1, high] 中寻找。
+     * 如果 [mid, high] 是有序数组，且 target 的大小满足 (nums[mid+1],nums[high]]，
+     * 则我们应该将搜索范围缩小至 [mid + 1, high]，否则在 [low, mid - 1] 中寻找。
+     *
+
      *
      * @param nums
      * @param target
@@ -47,22 +51,23 @@ public class SearchInRotatedSortedArrayS33 {
         while (low <= high) {
             //取中值
             mid = low + (high - low >> 1);
+            //若mid等于target直接返回
             if (nums[mid] == target) {
                 return mid;
             }
             //mid在值大的部分
             if (nums[mid] >= nums[0]) {
-                //target在大的部分，且在mid左边
+                //target在大的部分，且在mid左边,那么low到mid有序
                 if (target >= nums[0] && target < nums[mid]) {
                     high = mid - 1;
 
-                } else {//target在小的部分，或target在大的部分且在mid右边
+                } else {//target在小的部分，或target在大的部分且在mid右边，此时mid到high部分还是一个非有序，因此逐个往上找
                     low = mid + 1;
                 }
             }
             //mid在值小的部分
             else {
-                //target在小的部分,在mid右边
+                //target在小的部分,在mid右边，mid到high有序
                 if (target > nums[mid] && target <= nums[nums.length - 1]) {
                     low = mid + 1;
                 }else {//target在mid的左边
