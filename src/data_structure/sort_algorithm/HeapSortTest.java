@@ -23,6 +23,10 @@ package data_structure.sort_algorithm;
  * 3.进行堆排序：
  * 5.再将待排序序列再次调整为大根堆(小元素不断下坠)
  * 完成一个升序排序序列
+ *
+ * 若数组第一个元素存放元素，
+ * 1.复制到大的数组，再复制回来
+ * 2.将下标改动，比较麻烦
  */
 public class HeapSortTest {
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package data_structure.sort_algorithm;
 
+import java.util.Random;
+
 /**
  * 快速排序
  * <p>
@@ -16,7 +18,8 @@ public class QuickSortTest {
         //quickSortTest.quickSort(l, 0, l.length - 1);
         quickSortTest.quickSortAnother(l, 0, l.length - 1);
         for (int i : l) {
-            System.out.println(i);
+            System.out.print(i);
+            System.out.print(" ");
         }
     }
 
@@ -72,13 +75,22 @@ public class QuickSortTest {
     /**
      * 将数组根据low和high内数据划分成两部分
      *
+     * 我们现在是选择第一个元素作为pivot
+     * 可以随机选择一个值作为pivot，在待划分范围之内，利用random
+     * 但选择pivot后要将该值与第一个元素交换（或最后一个），之后才能进行划分
+     *
      * @param arr  待划分数组
      * @param low  待划分左
      * @param high 待划分右
      * @return 返回pivot的数组下标
      */
     public int partition(int[] arr, int low, int high) {
+        //随机选择一个值作为pivot,生成0到high-low+1的数，再加上low，pivot即在待划分范围内
+        //但还要跟low的位置交换
+        int pivotPos = new Random().nextInt(high-low+1)+low;
         //将第一个元素记为基准，被比较的值
+        //int pivot = arr[low];
+        swap(arr,pivotPos,low);
         int pivot = arr[low];
         while (low < high) {
             while (pivot <= arr[high] && low < high) {
@@ -91,9 +103,21 @@ public class QuickSortTest {
             arr[high] = arr[low];
         }
         arr[low] = pivot;
+
         return low;
     }
 
+    /**
+     * 交换函数
+     * @param arr 待交换数组
+     * @param a 待交换值下标
+     * @param b 待交换值下标
+     */
+    public void swap(int[] arr, int a,int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
     /**
      * 快速排序
      *
