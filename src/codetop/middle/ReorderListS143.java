@@ -25,7 +25,8 @@ import java.util.Deque;
 public class ReorderListS143 {
     /**
      * 法1：可以先用快慢指针找到链表中点，再将链表的后半部分反转
-     * 从链表头开始，每个链表取一个结点，拼在一起
+     * 从链表头开始，每个链表取一个结点，拼在一起。
+     * 考察了双指针找中点，反转链表，归并两个链表。
      *
      * 法2：利用双端队列，将链表入队，分别从头尾出队，将出队的结点连在一起。
      * @param head
@@ -42,6 +43,7 @@ public class ReorderListS143 {
         while (!deque.isEmpty()){
             temp.next=deque.pollFirst();
             temp = temp.next;
+            //奇数个结点时会少一个，偶数个结点队列刚好取完，多加一个判断
             if (!deque.isEmpty()){
                 temp.next = deque.pollLast();
                 temp = temp.next;
