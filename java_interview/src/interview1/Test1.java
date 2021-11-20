@@ -44,6 +44,7 @@ public class Test1 {
         if (left == 1) return rNode;  //若从头开始反转
         else preLNode.next = rNode;
         return head;
+
     }
 
 }
