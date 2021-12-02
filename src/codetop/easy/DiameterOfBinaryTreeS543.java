@@ -39,10 +39,13 @@ public class DiameterOfBinaryTreeS543 {
         if (root==null){
             return 0;
         }
-        int left = dfs(root.left);
-        int right = dfs(root.right);
-        //最后将不经过根节点的最大路径与经过根节点的路径比较，返回较大值
-        return Math.max(res,left+right);
+        //int left = dfs(root.left);
+        //int right = dfs(root.right);
+        ////最后将不经过根节点的最大路径与经过根节点的路径比较，返回较大值
+        //return Math.max(res,left+right);
+        //可以直接使用根节点进行递归
+        dfs(root);
+        return res;
     }
 
     /**
