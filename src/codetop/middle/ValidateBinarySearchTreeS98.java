@@ -2,6 +2,8 @@ package codetop.middle;
 
 import jianzhi_offer.TreeNode;
 
+import java.util.*;
+
 /**
  * @author Nebula
  * @date 2021/12/16 16:22
@@ -28,38 +30,75 @@ public class ValidateBinarySearchTreeS98 {
     }
 
     /**
-     * 法1：递归，从底向上进行判断
-     * 1.递归到最底层，若左右子树都为null返回true，还有一个子节点为null的情况
-     * 2.判断当前节点的左节点是否小于当前节点，右节点是否大于当前节点，是返回true，否返回false
+     * 法1：递归，从上往下进行判断
+     * 1.递归到最底层，若当前结点为null返回true
+     * 2.利用左右边界，判断当前结点值是否在边界内，不在直接返回false
+     * 3.若在，则继续往下递归
      * 问题：
      * 当前节点满足二叉搜索树。但上一节点不一定满足，需要当前节点，大于所有左子树节点，小于右子树节点，才能算满足二叉搜索树
+     * 因此利用一个区间
      * <p>
-     * 法2：中序遍历
+     * 法2：中序遍历，利用栈，判断当前结点值，是否比前一个结点值大，若小返回false
      *
      * @param root
      * @return
      */
     public static boolean isValidBST(TreeNode root) {
-        return isValid(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
+        return isValid(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
     /**
-     * 利用左右边界
+     * 递归，利用左右边界
+     * 法1：
      *
      * @param root
      * @param lower 左边界 (lower,upper)
-     * @param upper 有边界
+     * @param upper 右边界
      * @return
      */
-    public static boolean isValid(TreeNode root, int lower, int upper) {
+    public static boolean isValid(TreeNode root, long lower, long upper) {
+        //递归返回条件，到叶子节点
         if (root == null) {
-            return false;
+            return true;
         }
 
         if (root.val <= lower || root.val >= upper) {
             return false;
         }
 
-        return isValid(root.left,lower,root.val)&&isValid(root.right,root.val,upper);
+        return isValid(root.left, lower, root.val) && isValid(root.right, root.val, upper);
+    }
+
+    /**
+     * 法2:
+     * 迭代中序遍历，手动模拟栈
+     * 左根右
+     * 每次判断当前元素，是否大于栈顶元素，大于则继续遍历，否则返回false
+     * 用数组保存遍历的值，也可只保存前一个值即可
+     * @param root
+     * @return
+     */
+    public static boolean isValid2(TreeNode root) {
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        Deque<Integer> res = new ArrayDeque<>();
+        //满足两个条件中任意一个，循环继续
+        while (root != null || !stack.isEmpty()) {
+            //一直找到底
+            while (root!=null){
+                //将沿路的结点都入栈，后续用
+                stack.push(root);
+                root=root.left;
+            }
+            //结点出栈,赋值给root
+            root = stack.pop();
+            //判断当前元素是否大于前一个元素
+            if (!res.isEmpty()&&root.val<=res.peek()){
+                return false;
+            }
+            res.push(root.val);
+            //若当前结点存在右子树，继续
+            root = root.right;
+        }
+        return true;
     }
 }
