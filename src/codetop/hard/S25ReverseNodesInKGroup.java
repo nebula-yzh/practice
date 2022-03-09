@@ -23,7 +23,7 @@ import jianzhi_offer.ListNode;
  * 输入：head = [1,2,3,4,5], k = 1
  * 输出：[1,2,3,4,5]
  */
-public class ReverseNodesInKGroupS25 {
+public class S25ReverseNodesInKGroup {
     public static void main(String[] args) {
         ListNode head = new ListNode(1,new ListNode(2,new ListNode(3,new ListNode(4,new ListNode(5)))));
         ListNode node = reverseKGroup(head, 3);

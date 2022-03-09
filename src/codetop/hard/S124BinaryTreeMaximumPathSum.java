@@ -18,7 +18,7 @@ import jianzhi_offer.TreeNode;
  * 解释：最优路径是 2 -> 1 -> 3 ，路径和为 2 + 1 + 3 = 6
  *
  */
-public class BinaryTreeMaximumPathSumS124 {
+public class S124BinaryTreeMaximumPathSum {
 
     /**
      * 二叉树中的最大路径和，不一定经过根节点，利用深度优先遍历
