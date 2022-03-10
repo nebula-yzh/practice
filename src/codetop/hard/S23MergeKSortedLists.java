@@ -81,7 +81,8 @@ public class S23MergeKSortedLists {
 
     /**
      * 法2
-     * 优先队列
+     * 使用优先队列
+     * 使用val作为比较值，将节点塞进队列，再一个个取出
      *
      * @param lists
      * @return
@@ -94,13 +95,15 @@ public class S23MergeKSortedLists {
                 node = node.next;
             }
         }
-        ListNode res = new ListNode();
-        while (!queue.isEmpty()){
-            res.next = queue.poll();
-            res = res.next;
+        ListNode temp = new ListNode();
+        ListNode head = temp;
+        while (!queue.isEmpty()) {
+            temp.next = queue.poll();
+            //断链，避免形成环
+            temp.next.next = null;
+            temp = temp.next;
         }
-
-        return res.next;
+        return head.next;
     }
 
 

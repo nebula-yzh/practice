@@ -14,12 +14,13 @@ import jianzhi_offer.ListNode;
  */
 public class S148SortList {
     public static void main(String[] args) {
-        ListNode head = new ListNode(4,new ListNode(2,new ListNode(1,new ListNode(3))));
+        ListNode head = new ListNode(4, new ListNode(2, new ListNode(1, new ListNode(3))));
         S148SortList s148 = new S148SortList();
         s148.sortList(head);
     }
+
     /**
-     * 使用归并排序(时间复杂度符合，空间复杂度不符合)
+     * 法1：使用归并排序(时间复杂度符合，空间复杂度不符合)
      * 与数组不同，数组需要额外空间复制元素进行存储，链表可以不需要复制元素
      * 归并排序：
      * 1.递归分割，从中间开始分割，一步步分到最小，一个结点之后
@@ -100,4 +101,58 @@ public class S148SortList {
         }
         return dump.next;
     }
+
+    /**
+     * 法2：使用快速排序
+     * 1.找到pivot，每次排序使得pivot左边小于它，右边大于它
+     * 2.需要考虑每次分割后如何连接，不断链
+     * 从最小的链表开始连接
+     * 3.比数组快排复杂
+     * 也需要知道链表的头和尾
+     *
+     * @param head
+     * @return
+     */
+    public ListNode sortList2(ListNode head) {
+        quickSortPartition(head, null);
+        return head;
+    }
+
+    /**
+     * 快速排序
+     *
+     * @param head 待排链表头节点(就是pivot)
+     * @return
+     */
+    public void quickSortPartition(ListNode head, ListNode end) {
+        ListNode newHead = head.next;
+        //左边连接节点
+        ListNode left = head;
+        //右边连接节点
+        ListNode right = head;
+        head.next = null;
+        ListNode temp;
+        while (newHead != end) {
+            temp = newHead.next;
+            if (newHead.val < head.val) {
+                newHead.next = left;
+                //更新左边节点
+                left = newHead;
+            } else {
+                right.next = newHead;
+                //断链
+                newHead.next = null;
+                //更新右边节点
+                right = newHead;
+            }
+            newHead = temp;
+        }
+        //连接链表
+
+
+        quickSortPartition(left, head);
+        quickSortPartition(head.next, right);
+    }
+
+
 }
