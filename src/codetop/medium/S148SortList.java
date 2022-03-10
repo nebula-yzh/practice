@@ -104,7 +104,7 @@ public class S148SortList {
 
     /**
      * 法2：使用快速排序
-     * 1.找到pivot，每次排序使得pivot左边小于它，右边大于它
+     * 1.头节点作为pivot，每次排序使得pivot左边小于它，右边大于它
      * 2.需要考虑每次分割后如何连接，不断链
      * 从最小的链表开始连接
      * 3.比数组快排复杂
@@ -114,44 +114,44 @@ public class S148SortList {
      * @return
      */
     public ListNode sortList2(ListNode head) {
-        quickSortPartition(head, null);
+        quickSort(head, null);
         return head;
     }
 
     /**
      * 快速排序
+     * 递归返回条件：递归到最后只有一个元素
      *
      * @param head 待排链表头节点(就是pivot)
      * @return
      */
-    public void quickSortPartition(ListNode head, ListNode end) {
+    public void quickSort(ListNode head, ListNode end) {
+        if (head == null || head.next == null || head == end ) {
+            return;
+        }
         ListNode newHead = head.next;
-        //左边连接节点
-        ListNode left = head;
-        //右边连接节点
+        ListNode left = new ListNode();
+        ListNode start = left;
         ListNode right = head;
-        head.next = null;
-        ListNode temp;
+        ListNode temp = newHead.next;
+        //链表长度
         while (newHead != end) {
-            temp = newHead.next;
-            if (newHead.val < head.val) {
-                newHead.next = left;
-                //更新左边节点
-                left = newHead;
+            if (head.val > newHead.val) {
+                left.next = newHead;
+                left = left.next;
             } else {
                 right.next = newHead;
-                //断链
-                newHead.next = null;
-                //更新右边节点
-                right = newHead;
+                right = right.next;
             }
+            newHead.next = null;
             newHead = temp;
+            if (temp != null) {
+                temp = temp.next;
+            }
         }
-        //连接链表
-
-
-        quickSortPartition(left, head);
-        quickSortPartition(head.next, right);
+        left.next = head;
+        quickSort(start.next, head);
+        quickSort(head.next, right.next);
     }
 
 
