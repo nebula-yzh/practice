@@ -20,7 +20,7 @@ public class S148SortList {
     }
 
     /**
-     * 法1：使用归并排序(时间复杂度符合，空间复杂度不符合)
+     * 法1：使用归并排序(时间复杂度符合，空间复杂度符合)
      * 与数组不同，数组需要额外空间复制元素进行存储，链表可以不需要复制元素
      * 归并排序：
      * 1.递归分割，从中间开始分割，一步步分到最小，一个结点之后
@@ -114,45 +114,56 @@ public class S148SortList {
      * @return
      */
     public ListNode sortList2(ListNode head) {
-        quickSort(head, null);
-        return head;
+        if (head == null || head.next == null) {
+            return head;
+        }
+        //使用一个prev节点作为伪头节点
+        ListNode prev = new ListNode();
+        prev.next = head;
+        quickSort(prev, null);
+        //最终返回，因此每次都要将prev往下层传递
+        return prev.next;
     }
 
     /**
      * 快速排序
      * 递归返回条件：递归到最后只有一个元素
      *
-     * @param head 待排链表头节点(就是pivot)
+     * @param prev 待排链表头节点(就是pivot)的前一个节点
      * @return
      */
-    public void quickSort(ListNode head, ListNode end) {
-        if (head == null || head.next == null || head == end ) {
+    public void quickSort(ListNode prev, ListNode end) {
+        if (prev == end || prev.next == end) {
             return;
         }
-        ListNode newHead = head.next;
+        //临时链表，保存左边小于的节点
         ListNode left = new ListNode();
+        //第一个节点为基准
+        ListNode pivot = prev.next;
+        //保存左边开头
         ListNode start = left;
-        ListNode right = head;
-        ListNode temp = newHead.next;
+        //右边
+        ListNode right = pivot;
         //链表长度
-        while (newHead != end) {
-            if (head.val > newHead.val) {
-                left.next = newHead;
+        while (right.next != end) {
+            //使用right.next可以直接断链
+            //小于pivot，链接在临时链表上
+            if (pivot.val > right.next.val) {
+                left.next = right.next;
                 left = left.next;
+                //直接断开下一节点
+                right.next = right.next.next;
             } else {
-                right.next = newHead;
+                //大于pivot直接往后移动
                 right = right.next;
             }
-            newHead.next = null;
-            newHead = temp;
-            if (temp != null) {
-                temp = temp.next;
-            }
         }
-        left.next = head;
-        quickSort(start.next, head);
-        quickSort(head.next, right.next);
+        //每次当前pivot排序结束，将节点连接起来
+        left.next = prev.next;
+        //保证不断链
+        prev.next = start.next;
+        //继续往下排序，需要将prev传递
+        quickSort(prev, pivot);
+        quickSort(pivot, end);
     }
-
-
 }
