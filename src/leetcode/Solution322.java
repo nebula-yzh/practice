@@ -30,6 +30,13 @@ public class Solution322 {
         return dp(coins,amount);
     }
 
+    /**
+     * memo表示凑成对应金额所需的最少硬币数，比如3，最少要两个硬币
+     * 因此初始化大小为amount+1
+     * @param coins
+     * @param amount
+     * @return
+     */
     private static int dp(int[] coins, int amount) {
         if (amount == 0) {
             return 0;

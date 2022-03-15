@@ -15,8 +15,8 @@ package codetop.medium;
  */
 public class S1143LongestCommonSubsequence {
     public static void main(String[] args) {
-        String text1 = "abcde";
-        String text2 = "ace";
+        String text1 = "abbbb";
+        String text2 = "babab";
         System.out.println(longestCommonSubsequence(text1,text2));
     }
 
