@@ -1,7 +1,6 @@
 package codetop.medium;
 
 import codetop.common.CommonUtil;
-import jianzhi_offer.ListNode;
 import jianzhi_offer.TreeNode;
 
 import java.util.ArrayList;
