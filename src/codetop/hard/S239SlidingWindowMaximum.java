@@ -66,12 +66,13 @@ public class S239SlidingWindowMaximum {
 
     /**
      * 2.利用优先队列
+     * TODO
      *
      * @param nums
      * @param k
      * @return
      */
     public static int[] maxSlidingWindow2(int[] nums, int k) {
-
+        return new int[0];
     }
 }
