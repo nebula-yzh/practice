@@ -3,6 +3,7 @@ package codetop.hard;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * @author Nebula
@@ -29,8 +30,8 @@ import java.util.List;
  */
 public class S239SlidingWindowMaximum {
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 3, -1, -3, 5, 3, 6, 7};
-        int[] numbers = maxSlidingWindow(nums, 3);
+        int[] nums = new int[]{7, 2, 4};
+        int[] numbers = maxSlidingWindow2(nums, 2);
         System.out.println(Arrays.toString(numbers));
     }
 
@@ -66,13 +67,37 @@ public class S239SlidingWindowMaximum {
 
     /**
      * 2.利用优先队列
-     * TODO
+     * 可以通过使用优先队列，对窗口中值进行排序，但如果只存值，
+     * 窗口移动没办法确定窗口最左边是什么值，不好移除，因此可以存两个值，
+     * 一个是值，一个是值在数组中的下标，存一个数组
      *
      * @param nums
      * @param k
      * @return
      */
     public static int[] maxSlidingWindow2(int[] nums, int k) {
-        return new int[0];
+        //从大到小,数组第一个值为在nums中的下标，第二个为值
+        PriorityQueue<int[]> slideQueue = new PriorityQueue<>((o1, o2) -> o2[1] - o1[1]);
+        for (int i = 0; i < k; i++) {
+            slideQueue.add(new int[]{i, nums[i]});
+        }
+        List<Integer> res = new ArrayList<>();
+        for (int i = k - 1, len = nums.length; i < len; i++) {
+            //删除窗口左边值,不用通过循环比较，
+            // 只要每次判断堆顶元素是否在窗口外，是就移除
+            // 在窗口内就是最大值了
+            // 不用每次都删除窗口最左元素，只要不是最大值，也就是堆顶可以不用删除
+            while (slideQueue.peek()[0] <= i - k) {
+                slideQueue.poll();
+            }
+            //堆顶在窗口内，那就是最大值
+            res.add(slideQueue.peek()[1]);
+            if (i + 1 == len) {
+                break;
+            }
+            //窗口向右移动
+            slideQueue.add(new int[]{i + 1, nums[i + 1]});
+        }
+        return res.stream().mapToInt(Integer::intValue).toArray();
     }
 }
