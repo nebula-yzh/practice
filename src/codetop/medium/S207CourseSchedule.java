@@ -89,6 +89,7 @@ public class S207CourseSchedule {
                 count++;
             }
         }
+        //这部分是广度优先遍历，使用队列、类似层序遍历
         while (!queue.isEmpty()) {
             Integer course = queue.pollFirst();
             List<Integer> courses = map.get(course);
