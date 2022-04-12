@@ -6,6 +6,7 @@ import java.util.Scanner;
  * @author Nebula
  * @date 2022/4/12 10:00
  * @description: 图的应用，最小生成树 Prim 普里姆算法
+ * 采用邻接矩阵
  */
 public class MinimumSpanningTreePrim {
 
@@ -17,15 +18,19 @@ public class MinimumSpanningTreePrim {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+        //结点个数
         N = in.nextInt();
+        //输入的图，邻接矩阵表示
         G = new int[N][N];
+        //记录到达那个点的最小权值
         lowCost = new int[N];
         find = new int[N];
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 G[i][j] = in.nextInt();
-                if (G[i][j] == -1)
+                if (G[i][j] == -1) {
                     G[i][j] = 0xffffff;
+                }
             }
         }
         int ans = prim();
