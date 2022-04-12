@@ -13,36 +13,20 @@ public class MinimumSpanningTreePrim {
 
 
     /**
-     * 输入
-     * 5
-     * -1 2 3 1 -1
-     * 2 -1 -1 4 -1
-     * 3 -1 -1 1 1
-     * 1 4 1 -1 3
-     * -1 -1 1 3 -1
+     * 一个输入函数
+     * 输入顶点数量vertexNum
+     * 边的数量edgeNum
+     * 所有顶点及权值
+     * 5 7
+     * 0 1 2      表示顶点0到顶点1的权值为2
+     * 0 2 3
+     * 0 3 1
+     * 1 3 4
+     * 2 3 1
+     * 2 4 1
+     * 3 4 3
      */
-    public static void main(String[] args) {
-        int n;
-        int[][] graph;
-        int[] lowCost;
-        int[] isVisited;
-        Scanner in = new Scanner(System.in);
-        //结点个数
-        n = in.nextInt();
-        //输入的图，邻接矩阵表示
-        graph = new int[n][n];
-        //记录到达那个点的最小权值
-        lowCost = new int[n];
-        //节点是否访问
-        isVisited = new int[n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                graph[i][j] = in.nextInt();
-            }
-        }
-        int ans = prim(n, graph, lowCost, isVisited);
-        System.out.println(ans);
-    }
+    static int vertexNum;
 
     /**
      * prim算法 最小生成树
@@ -96,5 +80,79 @@ public class MinimumSpanningTreePrim {
             }
         }
         return Arrays.stream(lowCost).sum();
+    }
+
+    static int edgeNum;
+
+    /**
+     * 输入
+     * 5
+     * -1 2 3 1 -1
+     * 2 -1 -1 4 -1
+     * 3 -1 -1 1 1
+     * 1 4 1 -1 3
+     * -1 -1 1 3 -1
+     */
+    public static void main(String[] args) {
+        //int n;
+        //int[][] graph;
+        //int[] lowCost;
+        //int[] isVisited;
+        //Scanner in = new Scanner(System.in);
+        ////结点个数
+        //n = in.nextInt();
+        ////输入的图，邻接矩阵表示
+        //graph = new int[n][n];
+        ////记录到达那个点的最小权值
+        //lowCost = new int[n];
+        ////节点是否访问
+        //isVisited = new int[n];
+        //for (int i = 0; i < n; i++) {
+        //    for (int j = 0; j < n; j++) {
+        //        graph[i][j] = in.nextInt();
+        //    }
+        //}
+
+        //另外输入，构造邻接矩阵
+        //5 7
+        //0 1 2      表示顶点0到顶点1的权值为2
+        //0 2 3
+        //0 3 1
+        //1 3 4
+        //2 3 1
+        //2 4 1
+        //3 4 3
+        int[][] graph = input();
+        int n = vertexNum;
+        int[] lowCost = new int[n];
+        int[] isVisited = new int[n];
+        int ans = prim(n, graph, lowCost, isVisited);
+        System.out.println(ans);
+    }
+
+    public static int[][] input() {
+        Scanner scanner = new Scanner(System.in);
+        //顶点数量
+        vertexNum = scanner.nextInt();
+        //边的数量
+        edgeNum = scanner.nextInt();
+        int[][] graph = new int[vertexNum][vertexNum];
+        //初始化
+        for (int[] ints : graph) {
+            Arrays.fill(ints, -1);
+        }
+        //若输入按顺序则无需排序，若不按顺序，则需要按第一个节点排序
+        //输入edgeNum条边
+        //构建邻接矩阵
+        for (int i = 0; i < edgeNum; i++) {
+            //输入每个边的起始、结束以及权值
+            int start = scanner.nextInt();
+            int end = scanner.nextInt();
+            int weight = scanner.nextInt();
+            //邻接矩阵是对称的
+            graph[start][end] = weight;
+            graph[end][start] = weight;
+        }
+        return graph;
     }
 }
