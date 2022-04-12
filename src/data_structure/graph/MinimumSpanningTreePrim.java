@@ -12,20 +12,6 @@ import java.util.Scanner;
 public class MinimumSpanningTreePrim {
 
 
-    /**
-     * 一个输入函数
-     * 输入顶点数量vertexNum
-     * 边的数量edgeNum
-     * 所有顶点及权值
-     * 5 7
-     * 0 1 2      表示顶点0到顶点1的权值为2
-     * 0 2 3
-     * 0 3 1
-     * 1 3 4
-     * 2 3 1
-     * 2 4 1
-     * 3 4 3
-     */
     static int vertexNum;
 
     /**
@@ -130,6 +116,22 @@ public class MinimumSpanningTreePrim {
         System.out.println(ans);
     }
 
+    /**
+     * 一个输入函数
+     * 输入顶点数量vertexNum
+     * 边的数量edgeNum
+     * 所有顶点及权值
+     * 5 7
+     * 0 1 2      表示顶点0到顶点1的权值为2
+     * 0 2 3
+     * 0 3 1
+     * 1 3 4
+     * 2 3 1
+     * 2 4 1
+     * 3 4 3
+     *
+     * @return 表示图的邻接矩阵
+     */
     public static int[][] input() {
         Scanner scanner = new Scanner(System.in);
         //顶点数量
