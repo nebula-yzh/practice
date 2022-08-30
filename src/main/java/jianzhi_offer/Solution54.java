@@ -1,6 +1,5 @@
 package jianzhi_offer;
 
-import javax.swing.tree.TreeNode;
 
 /**
  * 二叉搜索树的第K大结点

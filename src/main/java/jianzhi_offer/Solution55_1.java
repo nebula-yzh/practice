@@ -1,6 +1,5 @@
 package jianzhi_offer;
 
-import javax.swing.tree.TreeNode;
 
 /**
  * LeetCode 剑指offer55题 二叉树的深度
