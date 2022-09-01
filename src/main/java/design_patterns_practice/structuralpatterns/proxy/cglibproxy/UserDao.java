@@ -10,4 +10,8 @@ public class UserDao {
     public void save() {
         System.out.println("保存数据");
     }
+
+    public void delete() {
+        System.out.println("删除数据");
+    }
 }

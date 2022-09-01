@@ -5,7 +5,7 @@ import java.lang.reflect.Proxy;
 /**
  * @author yingzhihao
  * @date 2022/6/25 14:53
- * @description: 动态代理对象
+ * @description: 动态代理对象 通过反射实现
  */
 public class ProxyFactory {
     /**

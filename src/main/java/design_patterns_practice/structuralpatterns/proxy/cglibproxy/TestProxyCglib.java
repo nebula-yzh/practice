@@ -14,5 +14,6 @@ public class TestProxyCglib {
         UserDao proxyInstance = (UserDao) new ProxyFactory(userDao).getProxyInstance();
         System.out.println(proxyInstance.getClass());
         proxyInstance.save();
+        proxyInstance.delete();
     }
 }
