@@ -110,7 +110,7 @@ public class DeadLock {
         thread3.start();
         thread4.start();
         Thread.sleep(1000);
-        //中断线程等待
+        //中断线程等待，会抛出异常java.lang.InterruptedException
         thread3.interrupt();
     }
 }
