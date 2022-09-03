@@ -59,14 +59,14 @@ public class DeadLock {
 
         //thread1.start();
         //thread2.start();
-        ApiDeadLock();
+        apiDeadLock();
     }
 
     /**
      * 通过api锁形成死锁
      * ReentrantLock锁
      */
-    public static void ApiDeadLock() throws InterruptedException {
+    public static void apiDeadLock() throws InterruptedException {
         //默认非公平锁
         //等待可中断lock.lockInterruptibly()
         ReentrantLock lock1 = new ReentrantLock();
@@ -79,32 +79,35 @@ public class DeadLock {
                     System.out.println(Thread.currentThread() + "拿到第一把锁");
                     Thread.sleep(100);
                     lock2.lockInterruptibly();
+                    System.out.println(Thread.currentThread() + "拿到第二把锁");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                } finally {
+                    lock1.unlock();
+                    lock2.unlock();
+                    System.out.println(Thread.currentThread() + "锁释放完成");
                 }
-                System.out.println(Thread.currentThread() + "拿到第二把锁");
-                lock1.unlock();
-                lock2.unlock();
-                System.out.println(Thread.currentThread() + "锁释放完成");
+
             }
         });
 
         Thread thread4 = new Thread(new Runnable() {
             @Override
             public void run() {
+
                 try {
                     lock2.lockInterruptibly();
                     System.out.println(Thread.currentThread() + "拿到第二把锁");
                     Thread.sleep(100);
                     lock1.lockInterruptibly();
+                    System.out.println(Thread.currentThread() + "拿到第一把锁");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                } finally {
+                    lock1.unlock();
+                    lock2.unlock();
+                    System.out.println(Thread.currentThread() + "锁释放完成");
                 }
-
-                System.out.println(Thread.currentThread() + "拿到第一把锁");
-                lock1.unlock();
-                lock2.unlock();
-                System.out.println(Thread.currentThread() + "锁释放完成");
             }
         });
         thread3.start();
