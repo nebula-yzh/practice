@@ -78,15 +78,15 @@ public class MinimumSpanningTreeKruskal {
         Collections.sort(list);
         for (Edge edge : list) {
             //查找边的起始和结束节点的父节点
-            m = find(parent, edge.getBegin());
-            n = find(parent, edge.getEnd());
+            m = find(parent, edge.begin);
+            n = find(parent, edge.end);
             //判断其父节点是否相等，若不相等，则可以相连
             //然后更新父节点数组
             if (m != n) {
                 //合并根节点
                 parent[m] = n;
                 //权值累加
-                sum += edge.getWeight();
+                sum += edge.weight;
                 //边的数量累加
                 num++;
             }
@@ -129,42 +129,16 @@ public class MinimumSpanningTreeKruskal {
 
     static class Edge implements Comparable<Edge> {
         //起始点
-        private int begin;
+        public int begin;
         //终止点
-        private int end;
+        public int end;
         //权值
-        private int weight;
-
+        public int weight;
         public Edge(int begin, int end, int weight) {
             this.begin = begin;
             this.end = end;
             this.weight = weight;
         }
-
-        public int getBegin() {
-            return begin;
-        }
-
-        public void setBegin(int begin) {
-            this.begin = begin;
-        }
-
-        public int getEnd() {
-            return end;
-        }
-
-        public void setEnd(int end) {
-            this.end = end;
-        }
-
-        public int getWeight() {
-            return weight;
-        }
-
-        public void setWeight(int weight) {
-            this.weight = weight;
-        }
-
         @Override
         public int compareTo(Edge o) {
             if (o.weight > this.weight) {
